@@ -1,0 +1,27 @@
+{
+  "name": "gunplacrud",
+  "version": "1.0.0",
+  "description": "A site for gunpla model kit enthusiasts to share/upload custom modelling projects and techniques",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.3",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.0.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/childofthe20th/GunplaCRUD.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/childofthe20th/GunplaCRUD/issues"
+  },
+  "homepage": "https://github.com/childofthe20th/GunplaCRUD#readme"
+}

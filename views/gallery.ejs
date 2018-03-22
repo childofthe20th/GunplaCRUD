@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Gallery Page</h1>
+
+        <nav>
+            <a href="/home/new">Upload Your Kit!</a>
+        </nav>
+
+        <ul>
+            <% for(let i=0; i < kits.length; i++) { %>
+                <li>
+                <a href="/gallery/<%=kits[i]._id%>">
+                    <%=kits[i].name%><br/>
+                </a>
+                <%=kits[i].grade%><br/>
+                <a href="/gallery/<%=kits[i]._id%>">
+                    <img src="<%=kits[i].img%>" alt="<%=kits[i].name%>">
+                </a><br/>
+                <%=kits[i].description%>
+                </li>
+            <% } %>
+        </ul>
+
+    </body>
+</html>
