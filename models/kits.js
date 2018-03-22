@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 const kitSchema = new mongoose.Schema({
     name: String,
     grade: String,
-    img: [String],
-    description: String,
-    user: String
-});
+    img: { type: [String], required: true },
+    description: String
+}, {timestamps: true});
 
 const Kit = mongoose.model('Kit', kitSchema);
 
