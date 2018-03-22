@@ -70,11 +70,15 @@ app.get('/home', (req, res)=>{
     res.render('home.ejs');
 });
 
-mongoose.connect('mongodb://localhost:27017/gunpla');
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gunpla';
+
+mongoose.connect(mongoURI);
 mongoose.connection.once('open', ()=>{
     console.log('Connected to the Almighty Mongod');
 });
 
-app.listen(3000, ()=>{
+const port = process.env.PORT || 3000
+
+app.listen(port, ()=>{
     console.log('Listening...');
 });
