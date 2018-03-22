@@ -14,11 +14,11 @@
         <ul>
             <% for(let i=0; i < kits.length; i++) { %>
                 <li>
-                <a href="/gallery/<%=kits[i]._id%>">
+                <a href="/home/gallery/<%=kits[i]._id%>">
                     <%=kits[i].name%><br/>
                 </a>
                 <%=kits[i].grade%><br/>
-                <a href="/gallery/<%=kits[i]._id%>">
+                <a href="/home/gallery/<%=kits[i]._id%>">
                     <img src="<%=kits[i].img%>" alt="<%=kits[i].name%>">
                 </a><br/>
                 <%=kits[i].description%>

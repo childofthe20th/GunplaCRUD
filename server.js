@@ -12,13 +12,13 @@ app.get('/home/new', (req, res)=>{
     res.render('new.ejs')
 });
 
-app.post('/gallery', (req, res)=>{
+app.post('/home/gallery', (req, res)=>{
     Kit.create(req.body, ()=>{
         res.redirect('/gallery');
     });
 });
 
-app.get('/gallery', (req, res)=>{
+app.get('/home/gallery', (req, res)=>{
     Kit.find({}, (err, allKits)=>{
         res.render('gallery.ejs', {
             kits: allKits
@@ -26,11 +26,25 @@ app.get('/gallery', (req, res)=>{
     });
 });
 
-app.get('/gallery/:id', (req, res)=>{
+app.get('/home/gallery/:id', (req, res)=>{
     Kit.findById(req.params.id, (err, foundKit)=>{
         res.render('show.ejs', {
             kits: foundKit
         });
+    });
+});
+
+app.get('/home/gallery/:id/edit', (req, res)=>{
+    Kit.findById(req.params.id, (err, foundKit)=>{
+        res.render('edit.ejs', {
+            kits: foundKit
+        });
+    });
+});
+
+app.put('/home/gallery/:id', (req, res)=>{
+    Kit.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedKit)=>{
+        res.redirect('/home/gallery/');
     });
 });
 
