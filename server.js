@@ -9,12 +9,12 @@ app.use(express.static('public'));
 app.use(methodOverride('_method'));
 
 app.get('/home/new', (req, res)=>{
-    res.render('new.ejs')
+    res.render('new.ejs');
 });
 
 app.post('/home/gallery', (req, res)=>{
     Kit.create(req.body, ()=>{
-        res.redirect('/gallery');
+        res.redirect('/home/gallery');
     });
 });
 
@@ -44,12 +44,30 @@ app.get('/home/gallery/:id/edit', (req, res)=>{
 
 app.put('/home/gallery/:id', (req, res)=>{
     Kit.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedKit)=>{
-        res.redirect('/home/gallery/');
+        res.redirect('/home/gallery');
     });
 });
 
+app.delete('/home/gallery/:id', (req, res)=>{
+    Kit.findByIdAndRemove(req.params.id, (err, deletedKit)=>{
+        res.redirect('/home/gallery');
+    });
+});
+
+app.get('/home/resources', (req, res)=>{
+    res.render('resources.ejs');
+})
+
+app.get('/home/getting_started', (req, res)=>{
+    res.render('noob.ejs');
+})
+
+app.get('/home/news_events', (req, res)=>{
+    res.render('events.ejs');
+})
+
 app.get('/home', (req, res)=>{
-    res.render('home.ejs')
+    res.render('home.ejs');
 });
 
 mongoose.connect('mongodb://localhost:27017/gunpla');
