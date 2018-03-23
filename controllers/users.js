@@ -4,7 +4,9 @@ const User = require('../models/users.js');
 const bcrypt = require('bcrypt');
 
 router.get('/new_user', (req, res)=>{
-    res.render('users/register.ejs')
+    res.render('users/register.ejs', {
+        currentUser: req.session.currentUser
+    });
 });
 
 router.post('/', (req, res)=>{

@@ -6,7 +6,9 @@ const bcrypt = require('bcrypt');
 
 
 router.get('/new_session', (req, res)=>{
-    res.render('sessions/new_session.ejs')
+    res.render('sessions/new_session.ejs', {
+        currentUser: req.session.currentUser
+    });
 });
 
 router.post('/new_session', (req, res)=>{

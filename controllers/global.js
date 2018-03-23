@@ -5,7 +5,9 @@ const Kit = require('../models/kits.js');
 const bcrypt = require('bcrypt');
 
 router.get('/new', (req, res)=>{
-    res.render('new.ejs');
+    res.render('new.ejs', {
+        currentUser: req.session.currentUser
+    });
 });
 
 router.post('/gallery', (req, res)=>{
@@ -20,7 +22,6 @@ router.get('/gallery', (req, res)=>{
             kits: allKits
         });
     });
-
 });
 
 router.get('/gallery/:id', (req, res)=>{
