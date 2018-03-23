@@ -2,14 +2,31 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-// const Kit = require('./models/kits.js')
+const session = require('express-session');
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
+app.use(session({
+    secret: 'mojo',
+    resave: false,
+    saveUninitialize: false
+}));
 
 const kitsController = require('./controllers/kits.js');
 app.use('/home', kitsController);
+
+const usersController = require('./controllers/users.js');
+app.use('/home', usersController);
+
+const sessionsController = require('./controllers/sessions.js');
+app.use('/home', sessionsController);
+
+app.get('/home/profile', (req, res)=>{
+    res.render('index.ejs', {
+        currentUser: req.session.currentUser
+    });
+});
 
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gunpla';
 

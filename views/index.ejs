@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Profile Page</h1>
+        <% if(currentUser){ %>
+            Welcome <%=currentUser.username%>!
+        <% } else { %>
+            Please create an account to access profile perks!
+        <% } %>
+
+    </body>
+</html>
