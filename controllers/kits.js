@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Kit = require('../models/kits.js');
+const User = require('../models/users.js');
 
 router.get('/new', (req, res)=>{
     res.render('new.ejs');
