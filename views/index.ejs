@@ -5,12 +5,21 @@
         <title></title>
     </head>
     <body>
-        <h1>Profile Page</h1>
-        <% if(currentUser){ %>
-            Welcome <%=currentUser.username%>!
-        <% } else { %>
-            Please create an account to access profile perks!
-        <% } %>
+
+        <nav>
+            <a href="/home/gallery">Main Gallery</a>
+            <a href="/home/getting_started">New to Gunpla?</a>
+            <a href="/home/news_events">News and Events</a>
+            <a href="/home/resources">External Resources</a>
+            <a href="#">Profile</a>
+        </nav>
+
+        <form action="/home/new_session?_method=DELETE" method="POST">
+            <input type="submit" value="Logout">
+        </form>
+
+        <h1>Welcome to Gunplay, <%=currentUser.username%>!</h1>
+        <p>Here you'll find a community where you are welcome to share all your gunpla projects, show them off, and learn about the hobby</p>
 
     </body>
 </html>

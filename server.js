@@ -22,7 +22,7 @@ app.use('/home', usersController);
 const sessionsController = require('./controllers/sessions.js');
 app.use('/home', sessionsController);
 
-app.get('/home/profile', (req, res)=>{
+app.get('/home/index', (req, res)=>{
     res.render('index.ejs', {
         currentUser: req.session.currentUser
     });
