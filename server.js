@@ -22,12 +22,6 @@ app.use('/home', usersController);
 const sessionsController = require('./controllers/sessions.js');
 app.use('/home', sessionsController);
 
-app.get('/home/index', (req, res)=>{
-    res.render('index.ejs', {
-        currentUser: req.session.currentUser
-    });
-});
-
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gunpla';
 
 mongoose.connect(mongoURI);

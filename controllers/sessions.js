@@ -20,4 +20,31 @@ router.post('/index', (req, res)=>{
     });
 });
 
+router.get('/index', (req, res)=>{
+    User.find({}, (err, foundUsers)=>{
+        users: foundUsers
+    });
+    res.render('index.ejs', {
+        currentUser: req.session.currentUser
+    });
+});
+
+router.get('/index/profile', (req, res)=>{
+    res.render('users/profile.ejs', {
+        currentUser: req.session.currentUser
+    });
+});
+
+router.delete('/index', (req, res)=>{
+    req.session.destroy(()=>{
+        res.redirect('/home');
+    })
+});
+
+router.delete('/index/profile', (req, res)=>{
+    req.session.destroy(()=>{
+        res.redirect('/home');
+    })
+});
+
 module.exports = router;
