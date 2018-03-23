@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Kit = require('../models/kits.js');
 const User = require('../models/users.js');
+const Kit = require('../models/kits.js');
+const bcrypt = require('bcrypt');
 
 router.get('/new', (req, res)=>{
     res.render('new.ejs');
@@ -19,6 +20,7 @@ router.get('/gallery', (req, res)=>{
             kits: allKits
         });
     });
+
 });
 
 router.get('/gallery/:id', (req, res)=>{
@@ -50,19 +52,50 @@ router.delete('/gallery/:id', (req, res)=>{
 });
 
 router.get('/resources', (req, res)=>{
-    res.render('resources.ejs');
+    res.render('resources.ejs', {
+        currentUser: req.session.currentUser
+    });
 });
 
 router.get('/getting_started', (req, res)=>{
-    res.render('noob.ejs');
+    res.render('noob.ejs', {
+        currentUser: req.session.currentUser
+    });
 });
 
 router.get('/news_events', (req, res)=>{
-    res.render('events.ejs');
+    res.render('events.ejs', {
+        currentUser: req.session.currentUser
+    });
+});
+
+router.get('/profile', (req, res)=>{
+    if(req.session.currentUser){
+        res.render('sessions/profile.ejs', {
+            currentUser: req.session.currentUser
+        })
+    } else {
+        res.redirect('/home/new_session')
+    }
 });
 
 router.get('/', (req, res)=>{
-    res.render('home.ejs');
+    res.render('home.ejs', {
+        currentUser: req.session.currentUser
+    });
 });
+
+router.delete('/', (req, res)=>{
+    req.session.destroy(()=>{
+        res.redirect('/home');
+    })
+});
+
+router.delete('/profile', (req, res)=>{
+    req.session.destroy(()=>{
+        res.redirect('/home');
+    })
+});
+
 
 module.exports = router;

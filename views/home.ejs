@@ -6,16 +6,27 @@
     </head>
     <body>
 
+        <% if(currentUser){ %>
+            <h2>Hi <%=currentUser.username%>!</h2>
+        <% } else { %>
+            <h2>Hello Guest</h2>
+        <% } %>
+
         <nav>
             <a href="/home/gallery">Main Gallery</a>
             <a href="/home/getting_started">New to Gunpla?</a>
             <a href="/home/news_events">News and Events</a>
             <a href="/home/resources">External Resources</a>
-            <a href="/home/new_session">Login</a>
-            <a href="/home/new_user">Register</a>
+
+            <% if(currentUser){ %>
+                <a href="/home/profile">Profile</a>
+            <% } else { %>
+                <a href="/home/new_session">Login</a>
+                <a href="/home/new_user">Register</a>
+            <% } %>
         </nav>
 
-        <h1>Welcome to Gunplay!</h1>
+        <h1>Welcome to Gunpla Station!</h1>
         <p>Here you'll find a community where you are welcome to share all your gunpla projects, show them off, and learn about the hobby</p>
 
     </body>

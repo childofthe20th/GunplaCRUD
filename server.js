@@ -13,8 +13,8 @@ app.use(session({
     saveUninitialize: false
 }));
 
-const kitsController = require('./controllers/kits.js');
-app.use('/home', kitsController);
+const globalController = require('./controllers/global.js');
+app.use('/home', globalController);
 
 const usersController = require('./controllers/users.js');
 app.use('/home', usersController);
