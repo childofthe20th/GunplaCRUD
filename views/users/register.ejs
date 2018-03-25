@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title></title>
+        <% include ../partials/head.ejs %>
     </head>
     <body>
 
@@ -13,27 +12,33 @@
         <% } %>
 
         <nav>
-            <a href="/home">Home</a>
-            <a href="/home/gallery">Main Gallery</a>
-            <a href="/home/getting_started">New to Gunpla?</a>
-            <a href="/home/news_events">News and Events</a>
-            <a href="/home/resources">External Resources</a>
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/gallery">Main Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/getting_started">New to Gunpla?</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/news_events">News and Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/resources">External Resources</a></li>
 
-            <% if(currentUser){ %>
-                <a href="/home/profile">Profile</a>
-            <% } else { %>
-                <a href="/home/new_session">Login</a>
-                Register
-            <% } %>
+                <% if(currentUser){ %>
+                    <li class="nav-item"><a class="nav-link" href="/home/profile">Profile</a></li>
+                <% } else { %>
+                    <li class="nav-item"><a class="nav-link" href="/home/new_session">Login</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/home/new_user">Register</a></li>
+                <% } %>
+            </ul>
         </nav>
 
 
         <h1>Create User</h1>
         <form class="" action="/home" method="POST">
             <input type="text" name="username" placeholder="username">
-            <input type="password" name="password" placeholder="password">
-            <input type="submit" value="Create User">
+            <input type="password" name="password" placeholder="password"><br/>
 
+            <input type="text" name="img" placeholder="Image URL"><br/>
+            <input type="text" name="name" placeholder="Name"><br/>
+            <input type="text" name="location" placeholder="Location"><br/>
+            <textarea type="text" name="description" placeholder="Describe yourself..."></textarea><br/>
+            <input type="submit" value="Create User">
         </form>
 
     </body>

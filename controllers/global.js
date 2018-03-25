@@ -10,16 +10,27 @@ router.get('/new', (req, res)=>{
     });
 });
 
+// My attempt at appending username to post
+
 router.post('/gallery', (req, res)=>{
-    Kit.create(req.body, ()=>{
-        res.redirect('/home/gallery');
-    });
+    if(req.session.currentUser){
+        req.body.author = req.session.currentUser.username;
+        Kit.create(req.body, ()=>{
+            res.redirect('/home/gallery')
+        });
+    } else {
+        Kit.create(req.body, ()=>{
+            res.redirect('/home/gallery');
+        });
+    }
+
 });
 
 router.get('/gallery', (req, res)=>{
     Kit.find({}, (err, allKits)=>{
         res.render('gallery.ejs', {
-            kits: allKits
+            kits: allKits,
+            currentUser: req.session.currentUser
         });
     });
 });
@@ -27,7 +38,8 @@ router.get('/gallery', (req, res)=>{
 router.get('/gallery/:id', (req, res)=>{
     Kit.findById(req.params.id, (err, foundKit)=>{
         res.render('show.ejs', {
-            kits: foundKit
+            kits: foundKit,
+            currentUser: req.session.currentUser
         });
     });
 });
@@ -35,7 +47,8 @@ router.get('/gallery/:id', (req, res)=>{
 router.get('/gallery/:id/edit', (req, res)=>{
     Kit.findById(req.params.id, (err, foundKit)=>{
         res.render('edit.ejs', {
-            kits: foundKit
+            kits: foundKit,
+            currentUser: req.session.currentUser
         });
     });
 });
@@ -78,6 +91,31 @@ router.get('/profile', (req, res)=>{
     } else {
         res.redirect('/home/new_session')
     }
+});
+
+router.get('/profile/:id/edit', (req, res)=>{
+    if(req.session.currentUser){
+        User.findById(req.params.id, (err, foundUser)=>{
+            res.render('sessions/edit_p.ejs', {
+                users: foundUser,
+                currentUser: req.session.currentUser
+            });
+        });
+    } else {
+        res.redirect('/home/new_session')
+    }
+});
+
+router.put('/profile/:id/edit', (req, res)=>{
+    User.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedUser)=>{
+        res.redirect('/home/profile');
+    });
+});
+
+router.delete('/profile/:id', (req, res)=>{
+    User.findByIdAndRemove(req.session.currentUser.id, (err, deletedUser)=>{
+        res.redirect('/home');
+    });
 });
 
 router.get('/', (req, res)=>{

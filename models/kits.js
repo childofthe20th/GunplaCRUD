@@ -4,7 +4,8 @@ const kitSchema = new mongoose.Schema({
     name: String,
     grade: String,
     img: { type: [String], required: true },
-    description: String
+    description: String,
+    user: String
 }, {timestamps: true});
 
 const Kit = mongoose.model('Kit', kitSchema);

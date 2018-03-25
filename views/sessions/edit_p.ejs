@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <% include ./partials/head.ejs %>
+        <% include ../partials/head.ejs %>
     </head>
     <body>
 
@@ -16,7 +16,7 @@
                 <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/home/gallery">Main Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="/home/getting_started">New to Gunpla?</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/home/news_events">News and Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/news_events">News and Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="/home/resources">External Resources</a></li>
 
                 <% if(currentUser){ %>
@@ -28,9 +28,19 @@
             </ul>
         </nav>
 
+        <form class="" action="/home/profile/<%=currentUser.id%>?_method=PUT" method="POST">
+            <img src="<%=currentUser.img%>" alt=""><br/>
+            <input type="text" name="img" value="<%=currentUser.img%>"><br/>
+            <input type="text" name="name" value="<%=currentUser.name%>"><br/>
+            <input type="text" name="location" value="<%=currentUser.location%>"><br/>
+            <textarea type="text" name="description" value="<%=currentUser.description%>"></textarea><br/>
+            <input type="submit" value="Update Profile">
 
+        </form>
 
-        <h1>News and Upcoming Events</h1>
+        <form class="" action="/home/profile/<%=currentUser.id%>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete Profile">
+        </form>
 
     </body>
 </html>
