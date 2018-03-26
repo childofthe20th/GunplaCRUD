@@ -5,28 +5,39 @@
     </head>
     <body>
 
-        <% if(currentUser){ %>
-            <h2>Hi <%=currentUser.username%>!</h2>
-        <% } else { %>
-            <h2>Hello Guest</h2>
-        <% } %>
+        <div class="top-bar">
+            <% include ../partials/body.ejs %>
+        </div>
 
         <nav>
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs nav-fill">
                 <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/home/gallery">Main Gallery</a></li>
-                <li class="nav-item"><a class="nav-link" href="/home/getting_started">New to Gunpla?</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/home/gallery">Main Gallery</a>
+                        <a class="dropdown-item" href="/home/new">Upload your kit!</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/home/getting_started">Tutorials</a></li>
                 <li class="nav-item"><a class="nav-link" href="/home/news_events">News and Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="/home/resources">External Resources</a></li>
 
                 <% if(currentUser){ %>
-                    <li class="nav-item"><a class="nav-link" href="/home/profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/home/profile">Profile</a></li>
                 <% } else { %>
-                    <li class="nav-item"><a class="nav-link" href="/home/new_session">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/home/new_user">Register</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Members</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/home/new_session">Login</a>
+                            <a class="dropdown-item" href="/home/new_user">Register</a>
+                        </div>
+                    </li>
                 <% } %>
             </ul>
         </nav>
+
+        <h1 class="title"><% include ../partials/title.ejs %></h1>
 
         <form class="" action="/home/profile/<%=currentUser.id%>?_method=PUT" method="POST">
             <img src="<%=currentUser.img%>" alt=""><br/>
@@ -41,6 +52,10 @@
         <form class="" action="/home/profile/<%=currentUser.id%>?_method=DELETE" method="POST">
             <input type="submit" value="Delete Profile">
         </form>
+
+        <footer id="footer">
+            <% include ./partials/footer.ejs %>
+        </footer>
 
     </body>
 </html>

@@ -1,0 +1,16 @@
+<div class="user-greeting">
+    <% if(currentUser){ %>
+        <h5>Hi <a href="/home/profile"><%=currentUser.username%></a>!</h5>
+    <% } else { %>
+        <h5>Welcome, <a href="/home/new_user">Guest</a>!</h5>
+    <% } %>
+</div>
+
+<div class="logout-container">
+    <% if(currentUser){ %>
+    <form action="/home/profile?_method=DELETE" method="POST">
+        <input type="submit" value="Logout">
+    </form>
+    <% } %>
+
+</div>

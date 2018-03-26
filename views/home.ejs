@@ -4,33 +4,65 @@
         <% include ./partials/head.ejs %>
     </head>
     <body>
+        <div class="top-bar">
+            <% include ./partials/body.ejs %>
+        </div>
 
-        <% if(currentUser){ %>
-            <h2>Hi <%=currentUser.username%>!</h2>
-        <% } else { %>
-            <h2>Hello Guest</h2>
-        <% } %>
 
         <nav>
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" href="/home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/home/gallery">Main Gallery</a></li>
-                <li class="nav-item"><a class="nav-link" href="/home/getting_started">New to Gunpla?</a></li>
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item"><a class="nav-link active disabled" href="/home">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/home/gallery">Main Gallery</a>
+                        <a class="dropdown-item" href="/home/new">Upload your kit!</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/home/getting_started">Tutorials</a></li>
                 <li class="nav-item"><a class="nav-link" href="/home/news_events">News and Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="/home/resources">External Resources</a></li>
 
                 <% if(currentUser){ %>
                     <li class="nav-item"><a class="nav-link" href="/home/profile">Profile</a></li>
                 <% } else { %>
-                    <li class="nav-item"><a class="nav-link" href="/home/new_session">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/home/new_user">Register</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Members</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/home/new_session">Login</a>
+                            <a class="dropdown-item" href="/home/new_user">Register</a>
+                        </div>
+                    </li>
                 <% } %>
             </ul>
 
         </nav>
 
-        <h1>Welcome to Gunpla Station!</h1>
-        <p>Here you'll find a community where you are welcome to share all your gunpla projects, show them off, and learn about the hobby</p>
+        <h1 class="title"><% include ./partials/title.ejs %></h1>
+
+
+        <main>
+            <div class="main-container">
+                <p class="welcome">Welcome to Gunpla Nation! Here you'll find a community where you are welcome to share all your completed gundam kits, show them off, and learn about the hobby.</p>
+
+                <p class="home-p">If you're unfamiliar with what Gundam or gunpla are as entertainment or hobby, lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <img class="home-img-left" src="https://pm1.narvii.com/5905/16994641df7cf326c42df89dabdf8e8d8ce94db4_hq.jpg" alt="">
+
+                <p class="home-p">Gundam's history is a long one that starts back in Japan circa 1979. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <img class="home-img-right" src="http://img1.ak.crunchyroll.com/i/spire3/dcb79b62432d6fe0927e587daa45f9841355350634_full.jpg" alt="">
+
+                <p class="home-p">Since then, the series has been a staple of the mecha genre in anime, and maintains its status as a major influence to this day. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <p class="home-p">Head over to <a href="/home/getting_started">Tutorials</a> to find out the history of how gunpla got started, the worldwide hobby it is today, and how to get started.</p>
+
+            </div>
+        </main>
+
+        <footer id="footer">
+            <% include ./partials/footer.ejs %>
+        </footer>
 
     </body>
 </html>

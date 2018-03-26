@@ -4,42 +4,58 @@
         <% include ./partials/head.ejs %>
     </head>
     <body>
-
-        <% if(currentUser){ %>
-            <h2>Hi <%=currentUser.username%>!</h2>
-        <% } else { %>
-            <h2>Hello Guest</h2>
-        <% } %>
+        <div class="top-bar">
+            <% include ./partials/body.ejs %>
+        </div>
 
         <nav>
-            <a href="/home">Home</a>
-            <a href="/home/gallery">Main Gallery</a>
-            <a href="/home/getting_started">New to Gunpla?</a>
-            <a href="/home/news_events">News and Events</a>
-            <a href="/home/resources">External Resources</a>
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gallery</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/home/gallery">Main Gallery</a>
+                        <a class="dropdown-item disabled" href="/home/new">Upload your kit!</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/home/getting_started">Tutorials</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/news_events">News and Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home/resources">External Resources</a></li>
 
-            <% if(currentUser){ %>
-                <a href="/home/profile">Profile</a>
-            <% } else { %>
-                <a href="/home/new_session">Login</a>
-                <a href="/home/new_user">Register</a>
-            <% } %>
+                <% if(currentUser){ %>
+                    <li class="nav-item"><a class="nav-link" href="/home/profile">Profile</a></li>
+                <% } else { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Members</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/home/new_session">Login</a>
+                            <a class="dropdown-item" href="/home/new_user">Register</a>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
+
         </nav>
 
-        <h1>New Kit Page</h1>
+        <h1 class="title"><% include ./partials/title.ejs %></h1>
+
         <form class="" action="/home/gallery" method="POST">
-            Name: <input type="text" name="name"><br/>
-            Grade: <select class="" type="text" name="grade">
+            <input type="text" name="name" placeholder="Kit name"><br/>
+            <select class="" type="text" name="grade" placeholder="Kit grade">
                 <option value="High Grade">High Grade</option>
                 <option value="Real Grade">Real Grade</option>
                 <option value="Master Grade">Master Grade</option>
                 <option value="Perfect Grade">Perfect Grade</option>
                 <option value="Other">Other</option>
             </select><br/>
-            Image: <input type="text" name="img"><br/>
-            Description: <textarea type="text" name="description"></textarea><br/>
+            <input type="text" name="img" placeholder="Image URL"><br/>
+            <textarea type="text" name="description" placeholder="Describe this kit..."></textarea><br/>
             <input type="submit" value="SUBMIT">
         </form>
+
+        <footer id="footer">
+            <% include ./partials/footer.ejs %>
+        </footer>
 
     </body>
 </html>
