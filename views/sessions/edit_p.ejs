@@ -39,19 +39,39 @@
 
         <h1 class="title"><% include ../partials/title.ejs %></h1>
 
-        <form class="" action="/home/profile/<%=currentUser.id%>?_method=PUT" method="POST">
-            <img src="<%=currentUser.img%>" alt=""><br/>
-            <input type="text" name="img" value="<%=currentUser.img%>"><br/>
-            <input type="text" name="name" value="<%=currentUser.name%>"><br/>
-            <input type="text" name="location" value="<%=currentUser.location%>"><br/>
-            <textarea type="text" name="description" value="<%=currentUser.description%>"></textarea><br/>
-            <input type="submit" value="Update Profile">
 
-        </form>
+        <main class="center-page">
+            <h2>Edit Profile</h2>
 
-        <form class="" action="/home/profile/<%=currentUser.id%>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete Profile">
-        </form>
+            <div class="form-container">
+                <form action="/home/profile/<%=currentUser.id%>?_method=PUT" method="POST">
+                    <div class="avatar"><img src="<%=currentUser.img%>" alt=""></div>
+                    <div class="form-group">
+                        <label for="avatar">new avatar URL</label><br/>
+                        <input type="text" name="img" value="<%=currentUser.img%>">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">new name</label><br/>
+                        <input type="text" name="name" value="<%=currentUser.name%>">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">new location</label><br/>
+                        <input type="text" name="location" value="<%=currentUser.location%>">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">new description</label><br/>
+                        <textarea type="text" name="description" value="<%=currentUser.description%>"></textarea>
+                    </div>
+                    <input class="btn" type="submit" value="Update Profile">
+                </form>
+
+                <form action="/home/profile/<%=currentUser.id%>?_method=DELETE" method="POST">
+                    <input class="btn-primary" type="submit" value="Delete Profile">
+                </form>
+            </div>
+
+        </main>
+
 
         <footer id="footer">
             <% include ../partials/footer.ejs %>

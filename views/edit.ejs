@@ -35,28 +35,46 @@
 
         <h1 class="title"><% include ./partials/title.ejs %></h1>
 
-        <%=kits.name%><br/>
-        <%=kits.grade%><br/>
-        <img src="<%=kits.img%>" alt="<%=kits.name%>"><br/>
-        <%=kits.description%><br/>
+        <main class="center-page">
+            <div class="">
+                <h2><%=kits.name%></h2>
+                <h4><%=kits.grade%></h4>
+                <img class="img-edit" src="<%=kits.img%>" alt="<%=kits.name%>"><br/>
+                <p class="home-p"><%=kits.description%></p>
+            </div>
 
-        <form class="" action="/home/gallery/<%=kits.id%>?_method=PUT" method="POST">
-            Name: <input type="text" name="name" value="<%=kits.name%>"><br/>
-            Grade: <select class="" type="text" name="grade" value="<%=kits.grade%>">
-                <option value="High Grade">High Grade</option>
-                <option value="Real Grade">Real Grade</option>
-                <option value="Master Grade">Master Grade</option>
-                <option value="Perfect Grade">Perfect Grade</option>
-                <option value="Other">Other</option>
-            </select><br/>
-            Image: <input type="text" name="img" value="<%=kits.img%>"><br/>
-            Description: <input type="text" name="description" value="<%=kits.description%>"><br/>
-            <input type="submit" value="Update">
-        </form>
+            <div class="form-container-edit">
+                <h2>Edit Kit Information</h2>
+                <form action="/home/gallery/<%=kits.id%>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <label for="grade">GRADE:</label><br/>
+                        <select type="text" name="grade" value="<%=kits.grade%>">
+                            <option value="High Grade">High Grade</option>
+                            <option value="Real Grade">Real Grade</option>
+                            <option value="Master Grade">Master Grade</option>
+                            <option value="Perfect Grade">Perfect Grade</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control-sm" type="text" name="name" value="<%=kits.name%>">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control-sm" type="text" name="img" value="<%=kits.img%>">
+                    </div>
+                    <div class="form-group">
+                        <textarea type="text" name="description" value="<%=kits.description%>"></textarea>
+                    </div>
+                    <input class="btn" type="submit" value="Update">
+                </form>
 
-        <form class="" action="/home/gallery/<%=kits.id%>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete Kit">
-        </form>
+                <form class="" action="/home/gallery/<%=kits.id%>?_method=DELETE" method="POST">
+                    <input class=btn-primary type="submit" value="Delete Kit">
+                </form>
+            </div>
+
+        </main>
+
 
         <footer id="footer">
             <% include ./partials/footer.ejs %>

@@ -39,12 +39,17 @@
 
         <h1 class="title"><% include ./partials/title.ejs %></h1>
 
-        <%=kits.name%><br/>
-        <%=kits.grade%><br/>
-        <img src="<%=kits.img%>" alt="<%=kits.name%>"><br/>
-        <%=kits.description%><br/>
+        <main class="center-page">
+            <div class="">
+                <h2><%=kits.name%></h2>
+                <h4><%=kits.grade%></h4>
+                <img class="img-edit" src="<%=kits.img%>" alt="<%=kits.name%>"><br/>
+                <p class="home-p"><%=kits.description%><span> -<%=kits.user%></span></p>
+            </div>
 
-        <a href="/home/gallery/<%=kits.id%>/edit">Edit Kit Info</a>
+            <h3 id="edit-link"><a href="/home/gallery/<%=kits.id%>/edit">Edit Kit Info</a></h3>
+        </main>
+
 
         <footer id="footer">
             <% include ./partials/footer.ejs %>

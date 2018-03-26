@@ -40,11 +40,20 @@
 
         <h1 class="title"><% include ../partials/title.ejs %></h1>
 
-        <form class="" action="/home/new_session" method="POST">
-            <input type="text" name="username" placeholder="username">
-            <input type="password" name="password" placeholder="password">
-            <input type="submit" value="Login">
-        </form>
+        <main class="center-page">
+
+            <h2>Log in for bragging rights!</h2>
+
+            <div class="form-container">
+                <form action="/home/new_session" method="POST">
+                    <input class="form-control-sm" type="text" name="username" placeholder="username">
+                    <input class="form-control-sm" type="password" name="password" placeholder="password">
+                    <input class="btn-primary" type="submit" value="Login">
+                </form>
+            </div>
+        </main>
+
+
 
         <footer id="footer">
             <% include ../partials/footer.ejs %>
