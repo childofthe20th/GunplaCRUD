@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require('../models/users.js');
 const Kit = require('../models/kits.js');
 const bcrypt = require('bcrypt');
+const kitSeed = require('../models/kit_seed.js');
+const userSeed = require('../models/user_seed.js');
 
 router.get('/new', (req, res)=>{
     res.render('new.ejs', {
@@ -10,7 +12,19 @@ router.get('/new', (req, res)=>{
     });
 });
 
-// My attempt at appending username to post
+router.get('/seed_kits', (req, res)=>{
+    Kit.create(kitSeed, (err, data)=>{
+        res.redirect('/home');
+    });
+});
+
+router.get('/seed_users', (req, res)=>{
+    User.create(userSeed, (err, data)=>{
+        res.redirect('/home');
+    });
+});
+
+// My failed attempt at appending username to post
 
 router.post('/gallery', (req, res)=>{
     if(req.session.currentUser){

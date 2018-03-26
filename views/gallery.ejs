@@ -39,21 +39,34 @@
 
         <h1 class="title"><% include ./partials/title.ejs %></h1>
 
-        <ul>
-            <% for(let i=0; i < kits.length; i++) { %>
-                <li>
-                <a href="/home/gallery/<%=kits[i]._id%>">
-                    <%=kits[i].name%><br/>
-                </a>
-                <%=kits[i].grade%><br/>
-                <a href="/home/gallery/<%=kits[i]._id%>">
-                    <img src="<%=kits[i].img%>" alt="<%=kits[i].name%>">
-                </a><br/>
-                <%=kits[i].description%><br/>
-                <%=kits[i].createdAt%>
-                </li>
-            <% } %>
-        </ul>
+        <main>
+            <h2>|GALLERY|</h2>
+
+            <ul class="gallery-cards">
+                <% for(let i=0; i < kits.length; i++) { %>
+                <div class="card-container">
+                    <div class="card mb-3 text-center" style="width: 25rem;">
+                        <li class="list-group-item">
+                            <div class="card-title">
+                                <a href="/home/gallery/<%=kits[i]._id%>">
+                                    <%=kits[i].name%>
+                                </a>
+                            </div>
+                        <p class="card-text"><%=kits[i].grade%></p>
+                        <a href="/home/gallery/<%=kits[i]._id%>">
+                            <img src="<%=kits[i].img%>" alt="<%=kits[i].name%>">
+                        </a>
+                        <p class="card-text"><%=kits[i].description%></p>
+                        <p class="card-posted">-<%=kits[i].user%></p>
+                        <span class="card-date"><%=kits[i].createdAt%></span>
+                        </li>
+                    </div>
+                </div>
+                <% } %>
+            </ul>
+        </main>
+
+
 
         <footer id="footer">
             <% include ./partials/footer.ejs %>

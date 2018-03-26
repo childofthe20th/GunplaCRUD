@@ -13,6 +13,23 @@ body {
     border-right: 3px solid dimgray;
 }
 
+li {
+    list-style: none;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Allerta Stencil', sans-serif;
+    margin-bottom: 30px;
+    border-left: 1px solid darkgray;
+}
+
+.gallery-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .title {
     text-align: right;
     font-family: 'Contrail One', cursive;
@@ -69,6 +86,48 @@ a:link {
     float: right;
     width: 30%;
     margin: 15px;
+}
+
+.list-group-item img {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.card {
+    margin: 20px;
+}
+
+.card-date, .card-posted {
+    color: darkgray;
+}
+
+.card-posted {
+    text-align: right;
+    margin: 0;
+}
+
+.card-title {
+    background: #4C5349;
+    padding: 20px;
+    font-size: 1.5em;
+    font-family: 'Stardos Stencil', cursive;
+    width: 100%;
+    border-radius: 2em;
+    box-shadow: 0 5px 5px;
+}
+
+.card-text {
+    text-align: justify;
+    border-bottom: 1px solid darkgray;
+    padding-bottom: 10px;
+}
+
+.card-title a:link {
+    color: white;
+}
+
+.card-title a:visited {
+    color: white;
 }
 
 #footer {
